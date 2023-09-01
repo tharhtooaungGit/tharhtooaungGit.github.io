@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2D</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="twoD-input" class="twoD-input">
+    <div class="nums" id="nums">
+      <table>
+        <tbody>
+          <!-- Use a loop to generate rows -->
+          <script>
+            for (let i = 0; i < 10; i++) {
+              document.write('<tr>');
+              // Use another loop to generate columns within each row
+              for (let j = 0; j < 10; j++) {
+                const num = i * 10 + j;
+                const formattedNum = num.toString().padStart(2, '0'); // Ensure two-digit format
+                document.write(`<td><button type="button" id="${formattedNum}" class="num-btn" onclick="buyNum('${formattedNum}')">${formattedNum}</button></td>`);
+              }
+              document.write('</tr>');
+            }
+          </script>
+        </tbody>
+      </table>      
+    </div>
+    <div class="pop-up not-show" id="pop-up">
+      <h3 id="htoe-num"></h3>
+      <input type="number" placeholder="ထိုးကြေး" id="amount-input">
+      <div id="htoe-r-num-container">
+        <h3 id="htoe-r-num"></h3>
+        <input type="number" placeholder="ထိုးကြေး" id="amount-input-r">
+      </div>
+      <button class="htoe-btn" onclick="addAmount()">ထိုးမယ်</button>
+    </div>
+  </div>
+  <div id="profit">
+    <table>
+      <tr>
+        <th>ထိုးသီး</th>
+        <th>ထိုးကြေး</th>
+        <th>လျော်ကြေး</th>
+        <th>စုစုပေါင်း‌ရောင်းရငွေ</th>
+        <th>စုရောင်း - လျော်</th>
+      </tr>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+
+
+  <script src="./script.js"></script>
+</body>
+</html>
