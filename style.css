@@ -90,6 +90,16 @@ tr:nth-child(even) {
   background-color: #ffffff; /* or any color you prefer */
 }
 
+td.amount-highlight {
+  color: red;
+  font-weight: bold;
+}
+
+#entries {
+  width: 400px;
+  margin: 50px auto;
+}
+
 @media screen and (max-width: 600px) {
   /* Adjust styles for smaller screens (phones) */
   .twoD-input {

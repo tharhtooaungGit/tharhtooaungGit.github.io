@@ -2,6 +2,7 @@
 
 // Retrieve data from localStorage or initialize an empty object
 let numberAmounts = JSON.parse(localStorage.getItem("numberAmounts")) || {};
+let numberEntries = JSON.parse(localStorage.getItem("numberEntries")) || {};
 
 const popUp = document.getElementById("pop-up");
 const htoeNum = document.getElementById("htoe-num");
@@ -45,6 +46,12 @@ function addAmount() {
     } else {
       numberAmounts[clickedNum] = enteredAmount;
     }
+
+    // Check if entries exist for this number
+    if (!numberEntries.hasOwnProperty(clickedNum)) {
+      numberEntries[clickedNum] = [];
+    }
+    numberEntries[clickedNum].push(enteredAmount);
   } else {
     console.log("Invalid amount input.");
   }
@@ -55,6 +62,12 @@ function addAmount() {
     } else {
       numberAmounts[clickedRNum] = enteredAmountR;
     }
+
+    // Check if entries exist for this number
+    if (!numberEntries.hasOwnProperty(clickedRNum)) {
+      numberEntries[clickedRNum] = [];
+    }
+    numberEntries[clickedRNum].push(enteredAmountR);
   } else {
     console.log("Invalid amount input for reversed number.");
   }
@@ -79,7 +92,9 @@ function addAmount() {
 
 function updateTable() {
   const tableBody = document.getElementById("table-body");
+  const entriesTableBody = document.getElementById("entries-body");
   tableBody.innerHTML = "";
+  entriesTableBody.innerHTML = "";
 
   const numbers = Object.keys(numberAmounts);
   const totalAmount = numbers.reduce((total, num) => total + numberAmounts[num], 0);
@@ -93,15 +108,34 @@ function updateTable() {
       <td>${numberAmounts[num]}</td>
       <td>${totalAmount}</td>
     `;
+    // Apply the amount-highlight class if the total amount is >= 10000
+    if (numberAmounts[num] >= 10000) {
+      row.querySelector("td:nth-child(2)").classList.add("amount-highlight");
+    }
     tableBody.appendChild(row);
+
+    // Check if entries exist for this number
+    if (numberEntries.hasOwnProperty(num)) {
+      const entryRow = document.createElement("tr");
+      entryRow.innerHTML = `
+        <td>${num}</td>
+        <td>${numberEntries[num].join(", ")}</td>
+      `;
+      entriesTableBody.appendChild(entryRow);
+    }
   });
 
   // Save the updated data to localStorage
   saveData();
+  saveEntries(); // Save entries data
 }
 
 function saveData() {
   localStorage.setItem("numberAmounts", JSON.stringify(numberAmounts));
+}
+
+function saveEntries() {
+  localStorage.setItem("numberEntries", JSON.stringify(numberEntries));
 }
 
 function confirmDelete() {
@@ -115,10 +149,11 @@ function confirmDelete() {
 // Function to delete all data and save an empty object to localStorage
 function deleteData() {
   numberAmounts = {}; // Clear all data
+  numberEntries = {}; // Clear all entries
   updateTable(); // Update the table (to clear it)
   localStorage.removeItem('numberAmounts'); // Remove data from localStorage
+  localStorage.removeItem('numberEntries'); // Remove entries from localStorage
 }
-
 
 // Initialize the table on page load
 updateTable();
