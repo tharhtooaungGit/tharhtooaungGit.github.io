@@ -104,6 +104,14 @@ function saveData() {
   localStorage.setItem("numberAmounts", JSON.stringify(numberAmounts));
 }
 
+function confirmDelete() {
+  const confirmed = confirm("ဖျက်မှာသေချာပြီလား?");
+  if (confirmed) {
+    // If the user confirms, proceed with the deletion
+    deleteData();
+  }
+}
+
 // Function to delete all data and save an empty object to localStorage
 function deleteData() {
   numberAmounts = {}; // Clear all data
