@@ -108,8 +108,9 @@ function saveData() {
 function deleteData() {
   numberAmounts = {}; // Clear all data
   updateTable(); // Update the table (to clear it)
-  saveData(); // Save an empty object to localStorage
+  localStorage.removeItem('numberAmounts'); // Remove data from localStorage
 }
+
 
 // Initialize the table on page load
 updateTable();
