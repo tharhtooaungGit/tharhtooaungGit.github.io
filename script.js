@@ -107,9 +107,7 @@
       row.innerHTML = `
         <td>${num}</td>
         <td>${numberAmounts[num]}</td>
-        <td>${numberAmounts[num] * 80}</td>
         <td>${totalAmount}</td>
-        <td>${totalAmount - numberAmounts[num] * 80}</td>
       `;
       tableBody.appendChild(row);
     });
