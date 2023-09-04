@@ -125,6 +125,7 @@ function updateTable() {
     `;
     entriesTableBody.appendChild(entryRow);
   });
+  
 
   // Save the updated data to localStorage
   saveData();
