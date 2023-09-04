@@ -97,8 +97,7 @@ td.amount-highlight {
 
 .search-div {
   width: 400px;
-  margin: 30px auto;
-  margin-top: 50px;
+  margin: 50px auto;
   text-align: center;
 }
 
@@ -116,7 +115,6 @@ td.amount-highlight {
 
 .search-div2 > div:first-child {
   border-right: 1px solid black;
-  
 }
 
 #entries {
