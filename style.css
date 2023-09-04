@@ -95,6 +95,29 @@ td.amount-highlight {
   font-weight: bold;
 }
 
+.search-div {
+  width: 400px;
+  margin: 30px auto;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.search-div2 {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+}
+
+.search-div2 > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-div2 > div:first-child {
+  border-right: 1px solid black;
+}
+
 #entries {
   width: 400px;
   margin: 70px auto;

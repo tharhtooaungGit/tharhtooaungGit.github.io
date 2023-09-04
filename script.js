@@ -113,21 +113,36 @@ function updateTable() {
       row.querySelector("td:nth-child(2)").classList.add("amount-highlight");
     }
     tableBody.appendChild(row);
+  });
 
-    // Check if entries exist for this number
-    if (numberEntries.hasOwnProperty(num)) {
-      const entryRow = document.createElement("tr");
-      entryRow.innerHTML = `
-        <td>${num}</td>
-        <td>${numberEntries[num].join(", ")}</td>
-      `;
-      entriesTableBody.appendChild(entryRow);
-    }
+  // Sort the entries table by number in ascending order
+  const sortedEntries = Object.keys(numberEntries).sort((a, b) => a - b);
+  sortedEntries.forEach((num) => {
+    const entryRow = document.createElement("tr");
+    entryRow.innerHTML = `
+      <td>${num}</td>
+      <td>${numberEntries[num].join(", ")}</td>
+    `;
+    entriesTableBody.appendChild(entryRow);
   });
 
   // Save the updated data to localStorage
   saveData();
   saveEntries(); // Save entries data
+}
+
+
+function searchNum() {
+  const searchInput = document.getElementById("search-num").value;
+  const searchedNumber = searchInput.toString().padStart(2, '0');
+  
+  if (numberEntries.hasOwnProperty(searchedNumber)) {
+    const searchedAmounts = numberEntries[searchedNumber].join(", ");
+    document.getElementById("searched-no").innerText = searchedNumber;
+    document.getElementById("searched-amounts").innerText = searchedAmounts;
+  } else {
+    alert("ဒီဂဏန်းမရှိသေးပါ");
+  }
 }
 
 function saveData() {
